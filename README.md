@@ -1,7 +1,9 @@
 # Captions
 - [What is Dart and why does Flutter use it?](#what-is-dart-and-why-does-flutter-use-it)
 - [Differentiate between named parameters and positional parameters in Dart?](#differentiate-between-named-parameters-and-positional-parameters-in-dart)
-- [How do you check if an async void method is completed in Dart?](#How-do-you-check-if-an-async-void-method-is-completed-in-dart)
+- [How do you check if an async void method is completed in Dart?](#how-do-you-check-if-an-async-void-method-is-completed-in-dart)
+- [How is whenCompleted different from then in Future?](#how-is-whencompleted-different-from-then-in-future)
+- [What are Null-aware operators?](#what-are-null-aware-operators)
 
 
 
@@ -64,13 +66,30 @@ Both named and positional parameters are part of optional parameter:
  
  Changing the return type to Future<void>.
 ```dart
-Future<void> questions(Question uestion) async {  
-   // ...
-}
+	Future<void> questions(Question uestion) async {  
+ 	  // ...
+	}
 ```
 Then you can do await questions(...); or questions().then(...);
 
+## How is whenCompleted() different from then() in Future?
 
-	
+whenComplete() will fire a function either when the Future completes with an error or not, instead .then() will fire a function after the Future completes without an error. This is the asynchronous equivalent of a "finally" block.
 
-  
+## What are Null-aware operators?
+Dart offers some handy operators for dealing with values that might be null.
+- One is the ??= assignment operator, which assigns a value to a variable only if that variable is currently null:
+```dart
+	int a; // The initial value of a is null.
+	a ??= 3;
+	print(a); // <-- Prints 3.
+
+	a ??= 5;
+	print(a); // <-- Still prints 3.
+```
+- Another null-aware operator is ??, which returns the expression on its left unless that expression’s value is null, in which case it evaluates and returns the expression on its right:
+```dart
+	print(1 ?? 3); // <-- Prints 1.
+	print(null ?? 12); // <-- Prints 12.
+```
+ 
