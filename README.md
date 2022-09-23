@@ -4,8 +4,9 @@
 - [How do you check if an async void method is completed in Dart?](#how-do-you-check-if-an-async-void-method-is-completed-in-dart)
 - [How is whenCompleted different from then in Future?](#how-is-whencompleted-different-from-then-in-future)
 - [What are Null-aware operators?](#what-are-null-aware-operators)
-- [What is `?.` operator?](#what-is-operator)
+- [What is `?.` operator?]()
 - [What is the difference between `async` and `async*` in Dart?](#what-is-the-difference-between-async-and-async-in-dart)
+- [What is the difference in calling Future and Future microtask?](#what-is-the-difference-in-calling-future-and-future-microtask)
 
 
 ## What is Dart and why does Flutter use it?
@@ -94,6 +95,7 @@ Dart offers some handy operators for dealing with values that might be null.
 	print(null ?? 12); // <-- Prints 12.
 ```
 ## What is `?.` operator?
+
 ?. [Conditional member access] - Like ., but the leftmost operand can be null; example: foo?.bar selects property bar from expression foo unless foo is null (in which case the value of foo?.bar is null)
 
 It is simply does a null check before accessing member. If left hand side of the operator is not null then it works simply as . and if it is null value then the whole thing is null.
@@ -106,7 +108,7 @@ if _debounceTimer is null then _debounceTimer?.isActive == null
 	
 if _debounceTimer is not null then _debounceTimer?.isActive == _debounceTimer.isActive.
 
-## What's the difference between async and async* in Dart?
+## What is the difference between async and async* in Dart?
 
 ### Short answer
 async gives you a Future
@@ -131,7 +133,7 @@ main() async {
 ### async*
 You add the async* keyword to make a function that returns a bunch of future values one at a time. The results are wrapped in a Stream.
 ```dart
-	Stream<int> countForOneMinute() async* {
+ Stream<int> countForOneMinute() async* {
   for (int i = 1; i <= 60; i++) {
     await Future.delayed(const Duration(seconds: 1));
     yield i;
@@ -148,3 +150,18 @@ You can use await for to wait for each value emitted by the Stream.
   }
 }
 ```
+## What is the difference in calling Future and Future microtask?
+
+All microtasks are executed before any other Futures.
+
+This means that you will want to schedule a microtask when you want to complete a small computation asynchronously as soon as possible.
+```dart
+void main() {
+  Future(() => print('future 1'));
+  Future(() => print('future 2'));
+  // Microtasks will be executed before futures.
+  Future.microtask(() => print('microtask 1'));
+  Future.microtask(() => print('microtask 2'));
+}
+```
+The event loop will simply pick up all microtasks in a FIFO (First In, First Out) fashion before other futures. A microtask queue is created when you schedule microtasks and that queue is executed before other futures (event queue).
