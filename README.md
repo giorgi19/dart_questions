@@ -5,7 +5,7 @@
 - [How is whenCompleted different from then in Future?](#how-is-whencompleted-different-from-then-in-future)
 - [What are Null-aware operators?](#what-are-null-aware-operators)
 - [What is ?. operator?](https://github.com/giorgi19/dart_questions#what-is-?.-operatort)
-- [What's the difference between async and async* in Dart?](what's-the-difference-between-async-and-async*-in-dart)
+- [What's the difference between async and async* in Dart?](https://github.com/giorgi19/dart_questions#what's-the-difference-between-async-and-async*-in-dart)
 
 
 
