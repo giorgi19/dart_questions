@@ -92,4 +92,16 @@ Dart offers some handy operators for dealing with values that might be null.
 	print(1 ?? 3); // <-- Prints 1.
 	print(null ?? 12); // <-- Prints 12.
 ```
- 
+## What is ?. operator?
+?. [Conditional member access] - Like ., but the leftmost operand can be null; example: foo?.bar selects property bar from expression foo unless foo is null (in which case the value of foo?.bar is null)
+
+It is simply does a null check before accessing member. If left hand side of the operator is not null then it works simply as . and if it is null value then the whole thing is null.
+
+for example:
+	
+_debounceTimer?.isActive 
+	
+if _debounceTimer is null then _debounceTimer?.isActive == null 
+	
+if _debounceTimer is not null then _debounceTimer?.isActive == _debounceTimer.isActive.
+	
