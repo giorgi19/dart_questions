@@ -18,43 +18,58 @@ Dart allows Flutter to avoid the need for a separate declarative layout language
 
 Both named and positional parameters are part of optional parameter:
 
-Optional Positional Parameters:
+#### Optional Positional Parameters:
 
 - A parameter wrapped by [ ] is a positional optional parameter
-    ```dart
+ ```dart
 	   getHttpUrl(String server, String path, [int port=80]) {
 	     // ...
 	   }
-	   ```
- - You can specify multiple positional parameters for a function:
-
-   ```dart
+ ```
+ 
+ - You can specify multiple positional parameters for a function
+ 
+ ```dart
 	   getHttpUrl(String server, String path, [int port=80, int numRetries=3]) {
 	     // ...
 	   }
-	   ```
-Optional Named Parameters:
+```
+  
+#### Optional Named Parameters:
 
--A parameter wrapped by { } is a named optional parameter.
+- A parameter wrapped by { } is a named optional parameter.
 
-  ```dart
+```dart
 	getHttpUrl(String server, String path, {int port = 80}) {
 	  // ...
 	}
-	```
-- You can specify multiple named parameters for a function:
+```
+- You can specify multiple named parameters for a function
 
-  ```dart
+```dart
 	getHttpUrl(String server, String path, {int port = 80, int numRetries = 3}) {
 	  // ...
 	}
-	```
+```
+ 
  - Because named parameters are referenced by name, they can be used in an order different from their declaration.
  
-    ```dart
+```dart
 	getHttpUrl('example.com', '/index.html', numRetries: 5, port: 8080);
 	getHttpUrl('example.com', '/index.html', numRetries: 5);
-	```
+```
 
+ ## How do you check if an async void method is completed in Dart?
+ 
+ Changing the return type to Future<void>.
+```dart
+Future<void> questions(Question uestion) async {  
+   // ...
+}
+```
+Then you can do await questions(...); or questions().then(...);
+
+
+	
 
   
