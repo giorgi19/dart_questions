@@ -4,6 +4,8 @@
 - [How do you check if an async void method is completed in Dart?](#how-do-you-check-if-an-async-void-method-is-completed-in-dart)
 - [How is whenCompleted different from then in Future?](#how-is-whencompleted-different-from-then-in-future)
 - [What are Null-aware operators?](#what-are-null-aware-operators)
+- [What is ?. operator?](https://github.com/giorgi19/dart_questions#what-is-?.-operatort)
+- [What's the difference between async and async* in Dart?](what's-the-difference-between-async-and-async*-in-dart)
 
 
 
@@ -104,4 +106,46 @@ _debounceTimer?.isActive
 if _debounceTimer is null then _debounceTimer?.isActive == null 
 	
 if _debounceTimer is not null then _debounceTimer?.isActive == _debounceTimer.isActive.
+
+## What's the difference between async and async* in Dart?
+
+### Short answer
+async gives you a Future
 	
+async* gives you a Stream.
+	
+### async
+You add the async keyword to a function that does some work that might take a long time. It returns the result wrapped in a Future.
+```dart
+Future<int> doSomeLongTask() async {
+  await Future.delayed(const Duration(seconds: 1));
+  return 42;
+}
+```
+You can get that result by awaiting the Future:
+```dart
+main() async {
+  int result = await doSomeLongTask();
+  print(result); // prints '42' after waiting 1 second
+}
+```
+### async*
+You add the async* keyword to make a function that returns a bunch of future values one at a time. The results are wrapped in a Stream.
+```dart
+	Stream<int> countForOneMinute() async* {
+  for (int i = 1; i <= 60; i++) {
+    await Future.delayed(const Duration(seconds: 1));
+    yield i;
+  }
+}
+```
+The technical term for this is [asynchronous generator function](https://dart.dev/guides/language/language-tour#generators). You use yield to return a value instead of return because you aren't leaving the function.
+
+You can use await for to wait for each value emitted by the Stream.
+```dart
+ main() async {
+  await for (int i in countForOneMinute()) {
+    print(i); // prints 1 to 60, one integer per second
+  }
+}
+```
