@@ -4,9 +4,8 @@
 - [How do you check if an async void method is completed in Dart?](#how-do-you-check-if-an-async-void-method-is-completed-in-dart)
 - [How is whenCompleted different from then in Future?](#how-is-whencompleted-different-from-then-in-future)
 - [What are Null-aware operators?](#what-are-null-aware-operators)
-- [What is ?. operator?](https://github.com/giorgi19/dart_questions#what-is-?.-operatort)
-- [What's the difference between async and async* in Dart?](https://github.com/giorgi19/dart_questions#what's-the-difference-between-async-and-async*-in-dart)
-
+- [What is `?.` operator?](#what-is-operator)
+- [What is the difference between `async` and `async*` in Dart?](#what-is-the-difference-between-async-and-async-in-dart)
 
 
 ## What is Dart and why does Flutter use it?
@@ -94,7 +93,7 @@ Dart offers some handy operators for dealing with values that might be null.
 	print(1 ?? 3); // <-- Prints 1.
 	print(null ?? 12); // <-- Prints 12.
 ```
-## What is ?. operator?
+## What is `?.` operator?
 ?. [Conditional member access] - Like ., but the leftmost operand can be null; example: foo?.bar selects property bar from expression foo unless foo is null (in which case the value of foo?.bar is null)
 
 It is simply does a null check before accessing member. If left hand side of the operator is not null then it works simply as . and if it is null value then the whole thing is null.
