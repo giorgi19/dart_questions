@@ -8,6 +8,7 @@
 - [What is the difference between `async` and `async*` in Dart?](#what-is-the-difference-between-async-and-async-in-dart)
 - [What is the difference in calling Future and Future microtask?](#what-is-the-difference-in-calling-future-and-future-microtask)
 - [Difference between Named Constructor and Factory Constructor?](#difference-between-named-constructor-and-factory-constructor)
+- [how to use Garbage collection in dart?](#how-to-use-garbage-collection-in-dart)
 
 
 ## What is Dart and why does Flutter use it?
@@ -192,4 +193,6 @@ A factory constructor can decide which instance to return on runtime, it can ret
 This may be a trivial point, but the named constructor will always return a new instance.
 Factory constructor can return a new instance or a cached instance based on our implementation.
 
+## how to use Garbage collection in dart?
 
+GC is the process of searching the heap to locate, and reclaim, regions of "dead" memory—memory that is no longer being used by an application. This process allows the memory to be re-used and minimizes the risk of an application running out of memory, causing it to crash. Garbage collection is performed automatically by the Dart VM. In DevTools, you can perform garbage collection on demand by clicking the GC button.
