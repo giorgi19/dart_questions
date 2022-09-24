@@ -10,7 +10,7 @@
 - [Difference between Named Constructor and Factory Constructor?](#difference-between-named-constructor-and-factory-constructor)
 - [how to use Garbage collection in dart?](#how-to-use-garbage-collection-in-dart)
 - [Difference between generics and dynamic in Dart?](#difference-between-generics-and-dynamic-in-dart)
-
+- [What is the difference between dynamic and Object in dart?](#what-is-the-difference-between-dynamic-and-object-in-dart)
 
 ## What is Dart and why does Flutter use it?
 
@@ -235,3 +235,31 @@ if (foo is bool) {
   //do something else
 }
 ```
+## What is the difference between dynamic and Object in dart?
+
+`Type dynamic has methods for every possible identifier and arity, with every possible combination of named parameters. These methods all have dynamic as their return type, and their formal parameters all have type dynamic. Type dynamic has properties for every possible identifier. These properties all have type dynamic.`
+
+That means you will not get warnings by calling any method on a dynamic typed variable. That will not be the case with a variable typed as Object.
+
+For instance:
+```dart
+dynamic a;
+Object b;
+
+main() {
+  a = "";
+  b = "";
+  printLengths();
+}
+
+printLengths() {
+  // no warning
+  print(a.length);
+
+  // warning:
+  // The getter 'length' is not defined for the class 'Object'
+  print(b.length);
+}
+```
+At runtime, I think, you shouldn't see any difference.
+
