@@ -7,6 +7,7 @@
 - [What is `?.` operator?]()
 - [What is the difference between `async` and `async*` in Dart?](#what-is-the-difference-between-async-and-async-in-dart)
 - [What is the difference in calling Future and Future microtask?](#what-is-the-difference-in-calling-future-and-future-microtask)
+- [Difference between Named Constructor and Factory Constructor?](#difference-between-named-constructor-and-factory-constructor)
 
 
 ## What is Dart and why does Flutter use it?
@@ -165,3 +166,30 @@ void main() {
 }
 ```
 The event loop will simply pick up all microtasks in a FIFO (First In, First Out) fashion before other futures. A microtask queue is created when you schedule microtasks and that queue is executed before other futures (event queue).
+
+## difference between Named Constructor and Factory Constructor? 
+
+A named constructor is a function that always returns a new instance of the class. Because of this, it does not utilize the return keyword.
+
+A factory constructor has looser constraints than a named constructor. The factory need only return an instance that is the same type as the class or that implements its methods. This could be a new instance of the class, but could also be an existing instance of the class or a new/existing instance of a subclass. A factory can use control flow to determine what object to return, and must utilize the return keyword. 
+
+#### 1.Access to instance members
+A named Constructor has access to this keyword so it can access any member variables and methods.
+Factory Constructor is static so it has no access to this keyword.
+
+#### 2.The Return Statement
+
+Named Constructor works like a normal constructor, it need not return an instance explicitly. (No need for return statement) have you ever seen a constructor with a return statement at the end?
+Factory Constructor should return an instance explicitly. See all the factory constructors, there’s always a return statement at the end.
+
+#### 3.Type of instance returned
+
+A named constructor can only generate the instance of the current class.
+A factory constructor can decide which instance to return on runtime, it can return either the instance of the current class or any of the instances of its descendants class.
+
+#### 4.New or Old instance
+
+This may be a trivial point, but the named constructor will always return a new instance.
+Factory constructor can return a new instance or a cached instance based on our implementation.
+
+
