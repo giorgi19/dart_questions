@@ -282,3 +282,26 @@ Snapshot files can be created from Dart programs. All of the program code and de
 The Dart core libraries can be compiled into a snapshot file, allowing them to be loaded quickly. The core libraries are prebuilt snapshots that are loaded at runtime in most standard distributions of the main Dart 
 #### Object snapshots
 Dart is an asynchronous programming language. For concurrency, it takes advantage of isolates. Because these are message-passing workers, a mechanism to serialize a message is required. This is accomplished by creating a snapshot from a particular object, which is then passed to another isolate for deserialization.
+	
+## What is an alternative way of using Switch?
+```dart
+getCaffeine(type){
+	
+   String caffeine;
+	
+  const map = {
+    'Coffee':'95 mg',
+    'Tea':'11 mg',
+    'Soda':'21 mg',
+  };
+	
+  caffeine = map[type] ?? 'Not found';
+  return caffeine;
+	
+}
+```
+`print(getCaffeine(Coffee))`
+95mg
+	
+`print(getCaffeine(Random))`
+Not found
