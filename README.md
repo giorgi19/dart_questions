@@ -13,6 +13,7 @@
 - [Difference between generics and dynamic in Dart?](#difference-between-generics-and-dynamic-in-dart)
 - [What is the difference between dynamic and Object in dart?](#what-is-the-difference-between-dynamic-and-object-in-dart)
 - [What are the Snapshots in Dart?](#what-are-the-snapshots-in-dart)
+- [What is an alternative way of using Switch?](#what-is-an-alternative-way-of-using-switch)
 
 
 ## What is Dart and why does Flutter use it?
