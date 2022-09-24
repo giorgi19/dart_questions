@@ -9,8 +9,11 @@
 - [What is the difference in calling Future and Future microtask?](#what-is-the-difference-in-calling-future-and-future-microtask)
 - [Difference between Named Constructor and Factory Constructor?](#difference-between-named-constructor-and-factory-constructor)
 - [how to use Garbage collection in dart?](#how-to-use-garbage-collection-in-dart)
+- [what is Object class?](#what-is-object-class)
 - [Difference between generics and dynamic in Dart?](#difference-between-generics-and-dynamic-in-dart)
 - [What is the difference between dynamic and Object in dart?](#what-is-the-difference-between-dynamic-and-object-in-dart)
+- [What are the Snapshots in Dart?](#what-are-the-snapshots-in-dart)
+
 
 ## What is Dart and why does Flutter use it?
 
@@ -197,7 +200,14 @@ Factory constructor can return a new instance or a cached instance based on our 
 ## how to use Garbage collection in dart?
 
 GC is the process of searching the heap to locate, and reclaim, regions of "dead" memory—memory that is no longer being used by an application. This process allows the memory to be re-used and minimizes the risk of an application running out of memory, causing it to crash. Garbage collection is performed automatically by the Dart VM. In DevTools, you can perform garbage collection on demand by clicking the GC button.
+
+## what is Object class?
 	  
+The base class for all Dart objects except null.
+
+Because Object is a root of the non-nullable Dart class hierarchy, every other non-Null Dart class is a subclass of Object.
+
+When you define a class, you should consider overriding toString to return a string describing an instance of that class. You might also need to define hashCode and operator ==.
 	  
 ## Difference between generics and dynamic in Dart?
 	  
@@ -263,3 +273,12 @@ printLengths() {
 ```
 At runtime, I think, you shouldn't see any difference.
 
+## What are the Snapshots in Dart?
+	
+The Dart relies heavily on snapshots. Snapshots are files that include objects and other runtime information. 
+#### Script snapshots
+Snapshot files can be created from Dart programs. All of the program code and dependencies are prepared and ready to run in these folders. This enables quick start-ups.
+#### Full snapshots
+The Dart core libraries can be compiled into a snapshot file, allowing them to be loaded quickly. The core libraries are prebuilt snapshots that are loaded at runtime in most standard distributions of the main Dart 
+#### Object snapshots
+Dart is an asynchronous programming language. For concurrency, it takes advantage of isolates. Because these are message-passing workers, a mechanism to serialize a message is required. This is accomplished by creating a snapshot from a particular object, which is then passed to another isolate for deserialization.
