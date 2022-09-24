@@ -9,6 +9,7 @@
 - [What is the difference in calling Future and Future microtask?](#what-is-the-difference-in-calling-future-and-future-microtask)
 - [Difference between Named Constructor and Factory Constructor?](#difference-between-named-constructor-and-factory-constructor)
 - [how to use Garbage collection in dart?](#how-to-use-garbage-collection-in-dart)
+- [Difference between generics and dynamic in Dart?](#difference-between-generics-and-dynamic-in-dart)
 
 
 ## What is Dart and why does Flutter use it?
@@ -196,3 +197,41 @@ Factory constructor can return a new instance or a cached instance based on our 
 ## how to use Garbage collection in dart?
 
 GC is the process of searching the heap to locate, and reclaim, regions of "dead" memory—memory that is no longer being used by an application. This process allows the memory to be re-used and minimizes the risk of an application running out of memory, causing it to crash. Garbage collection is performed automatically by the Dart VM. In DevTools, you can perform garbage collection on demand by clicking the GC button.
+	  
+	  
+## Difference between generics and dynamic in Dart?
+	  
+Generics are restricted to only 1 type, while dynamic is not because it stops the compiler to perform "type checking".
+#### For Example;
+```dart
+class Foo<T> {
+  var bar = List<T>();
+  var foo = List<dynamic>();
+
+  void addBar(T elem) {
+    bar.add(elem);
+  }
+
+  void addFoo(dynamic elem) {
+    foo.add(elem);
+  }
+}
+
+var bar = Foo<String>()
+  ..addBar("hello")
+  ..addBar(123); //compile error, you can't add an integer to <string> list
+
+var foo = Foo<String>()
+  ..addFoo("hello")
+  ..addFoo(123); //OK because dynamic accept any type
+
+```
+Dynamics enable you to use mixed maps Map<String, dynamic> or "emulate" union types logic like:
+```dart
+dynamic foo = //some type;
+if (foo is bool) {
+  //do somethings
+} else if (foo is String) {
+  //do something else
+}
+```
